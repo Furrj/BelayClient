@@ -4,7 +4,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-3">
       <div className="container-fluid">
-        <div className="navbar-brand" id="nav-title">Belay</div>
+        <div className="navbar-brand" id="nav-title">Beelay</div>
         <button
           className="navbar-toggler"
           type="button"
