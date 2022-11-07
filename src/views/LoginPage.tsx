@@ -16,7 +16,7 @@ const LoginPage: React.FC = () => {
   const login = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
-    const res = await fetch("/register", {
+    const res = await fetch("http://localhost:5000/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
