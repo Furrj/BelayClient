@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background-color: hsla(191, 33%, 47%, 0.31);
 }
 
 code {
@@ -16,4 +17,8 @@ code {
 /* NAV */
 #nav-title {
   color: cyan;
+}
+
+.nav-link {
+  cursor: pointer;
 }

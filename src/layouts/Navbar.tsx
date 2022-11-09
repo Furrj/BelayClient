@@ -1,10 +1,16 @@
 import React from "react";
 
-const Navbar: React.FC = () => {
+interface IProps {
+  clickRegister: (page: string) => void;
+}
+
+const Navbar: React.FC<IProps> = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-3">
       <div className="container-fluid">
-        <div className="navbar-brand" id="nav-title">Beelay</div>
+        <div className="navbar-brand" id="nav-title">
+          Beelay
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,13 +25,29 @@ const Navbar: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <div className="nav-link">Home</div>
+              <div
+                className="nav-link"
+                onClick={() => props.clickRegister("homePage")}
+              >
+                Home
+              </div>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <div className="nav-link">
+              <div
+                className="nav-link"
+                onClick={() => props.clickRegister("loginPage")}
+              >
                 Login
+              </div>
+            </li>
+            <li className="nav-item">
+              <div
+                className="nav-link"
+                onClick={() => props.clickRegister("registerPage")}
+              >
+                Register
               </div>
             </li>
           </ul>
