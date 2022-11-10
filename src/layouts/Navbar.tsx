@@ -1,10 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-interface IProps {
-  clickRegister: (page: string) => void;
-}
-
-const Navbar: React.FC<IProps> = (props) => {
+const Navbar: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-3">
       <div className="container-fluid">
@@ -25,30 +22,21 @@ const Navbar: React.FC<IProps> = (props) => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <div
-                className="nav-link"
-                onClick={() => props.clickRegister("homePage")}
-              >
+              <Link to="/" className="nav-link">
                 Home
-              </div>
+              </Link>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <div
-                className="nav-link"
-                onClick={() => props.clickRegister("loginPage")}
-              >
+              <Link to="/login" className="nav-link">
                 Login
-              </div>
+              </Link>
             </li>
             <li className="nav-item">
-              <div
-                className="nav-link"
-                onClick={() => props.clickRegister("registerPage")}
-              >
+              <Link to="/register" className="nav-link">
                 Register
-              </div>
+              </Link>
             </li>
           </ul>
         </div>
