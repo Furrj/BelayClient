@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import UsernameTaken from "../layouts/UsernameTaken";
+
 interface IState {
   username: string;
   password: string;
@@ -12,6 +14,7 @@ const initState: IState = {
 
 const RegisterPage: React.FC = () => {
   const [userInfo, setUserInfo] = useState<IState>(initState);
+  const [taken, setTaken] = useState<boolean>(false);
 
   const register = async (
     e: React.MouseEvent<HTMLButtonElement>
@@ -24,7 +27,12 @@ const RegisterPage: React.FC = () => {
       body: JSON.stringify(userInfo),
     });
     const data = await res.json();
-    console.log(data);
+    if (data === "Taken") {
+      setTaken(true);
+    } else {
+      console.log("Success");
+      setTaken(false);
+    }
   };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -51,6 +59,8 @@ const RegisterPage: React.FC = () => {
         value={userInfo.password}
         onChange={inputHandler}
       />
+      <br />
+      {taken && <UsernameTaken />}
       <br />
       <button className="mt-3" onClick={register}>
         Register
