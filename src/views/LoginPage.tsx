@@ -23,7 +23,8 @@ const LoginPage: React.FC = () => {
       },
       body: JSON.stringify(userInfo),
     });
-    console.log(res.json());
+    const data: string = await res.json();
+    console.log(data);
   };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {

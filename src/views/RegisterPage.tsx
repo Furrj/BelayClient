@@ -26,11 +26,11 @@ const RegisterPage: React.FC = () => {
       },
       body: JSON.stringify(userInfo),
     });
-    const data = await res.json();
+    const data: string = await res.json();
     if (data === "Taken") {
       setTaken(true);
     } else {
-      console.log("Success");
+      console.log(data);
       setTaken(false);
     }
   };
