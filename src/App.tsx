@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Cookies from "js-cookie";
 
 //VIEWS
 import LoginPage from "./views/LoginPage";
@@ -12,12 +11,6 @@ import Navbar from "./layouts/Navbar";
 import Footer from "./layouts/Footer";
 
 const App: React.FC = () => {
-  const [userId, setUserId] = useState<string>("");
-
-  if (Cookies.get('user_id')) {
-    console.log("User Id:" + Cookies.get('user_id'));
-  }
-
   return (
     <BrowserRouter>
       <div>
