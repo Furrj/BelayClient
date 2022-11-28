@@ -5,7 +5,7 @@ interface IState {
   password: string;
 }
 
-const initState = {
+const initState: IState = {
   username: "",
   password: "",
 };
