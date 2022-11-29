@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import UsernameTaken from "../layouts/UsernameTaken";
 
+import { IUser } from "../App";
+
+//STATE
 interface IState {
   username: string;
   password: string;
@@ -12,9 +16,22 @@ const initState: IState = {
   password: "",
 };
 
-const RegisterPage: React.FC = () => {
-  const [userInfo, setUserInfo] = useState<IState>(initState);
+//PROPS
+interface IProps {
+  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  userInfo: IUser;
+  setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
+}
+
+const RegisterPage: React.FC<IProps> = ({
+  setLoggedIn,
+  userInfo,
+  setUserInfo,
+}) => {
+  const [userInput, setUserInput] = useState<IState>(initState);
   const [taken, setTaken] = useState<boolean>(false);
+
+  const navigate: NavigateFunction = useNavigate();
 
   const register = async (
     e: React.MouseEvent<HTMLButtonElement>
@@ -24,20 +41,22 @@ const RegisterPage: React.FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(userInput),
     });
-    const data: string = await res.json();
-    if (data === "Taken") {
+    const data: IUser = await res.json();
+    if (!data.valid) {
       setTaken(true);
     } else {
-      console.log(data);
       setTaken(false);
+      setLoggedIn(true);
+      setUserInfo(data);
+      return navigate("/");
     }
   };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setUserInfo({
-      ...userInfo,
+    setUserInput({
+      ...userInput,
       [e.target.name]: e.target.value,
     });
   };
@@ -48,7 +67,7 @@ const RegisterPage: React.FC = () => {
       <input
         type="text"
         name="username"
-        value={userInfo.username}
+        value={userInput.username}
         onChange={inputHandler}
       />
       <br />
@@ -56,7 +75,7 @@ const RegisterPage: React.FC = () => {
       <input
         type="text"
         name="password"
-        value={userInfo.password}
+        value={userInput.password}
         onChange={inputHandler}
       />
       <br />

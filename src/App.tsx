@@ -10,15 +10,49 @@ import HomePage from "./views/HomePage";
 import Navbar from "./layouts/Navbar";
 import Footer from "./layouts/Footer";
 
+//STATE
+export type IUser = {
+  username: string;
+  id: string;
+  valid: boolean;
+};
+
+const initState = {
+  username: "",
+  id: "",
+  valid: false,
+};
+
 const App: React.FC = () => {
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useState<IUser>(initState);
+
   return (
     <BrowserRouter>
       <div>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/login"
+            element={
+              <LoginPage
+                setLoggedIn={setLoggedIn}
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RegisterPage
+                setLoggedIn={setLoggedIn}
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+              />
+            }
+          />
         </Routes>
         <Footer />
       </div>
