@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar: React.FC = () => {
+interface IProps {
+  loggedIn: boolean;
+  username: string;
+  logout: () => void;
+}
+
+const Navbar: React.FC<IProps> = ({ loggedIn, username, logout }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-3">
       <div className="container-fluid">
@@ -27,18 +33,34 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
           </ul>
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/register" className="nav-link">
-                Register
-              </Link>
-            </li>
-          </ul>
+          {!loggedIn && (
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/register" className="nav-link">
+                  Register
+                </Link>
+              </li>
+            </ul>
+          )}
+          {loggedIn && (
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link to="/profile" className="nav-link text-info">
+                  {username}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <div className="nav-link" onClick={logout}>
+                  Logout
+                </div>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>

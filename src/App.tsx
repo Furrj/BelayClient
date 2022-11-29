@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 //VIEWS
 import LoginPage from "./views/LoginPage";
@@ -27,10 +31,19 @@ const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<IUser>(initState);
 
+  const logout = (): void => {
+    setLoggedIn(false);
+    setUserInfo(initState);
+  };
+
   return (
     <BrowserRouter>
       <div>
-        <Navbar />
+        <Navbar
+          loggedIn={loggedIn}
+          username={userInfo.username}
+          logout={logout}
+        />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
