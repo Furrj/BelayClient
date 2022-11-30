@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 //TYPES
 import { IUser } from "../App";
@@ -9,12 +10,13 @@ interface IProps {
 }
 
 const ProfilePage: React.FC<IProps> = ({ userInfo, loggedIn }) => {
-  return (
-    <div>
-      {!loggedIn && <h2>Please Login</h2>}
-      {loggedIn && <h1>{userInfo.username}'s Profile</h1>}
-    </div>
-  );
+  const navigate: NavigateFunction = useNavigate();
+
+  useEffect(() => {
+    if (!loggedIn) return navigate("/login");
+  }, []);
+
+  return <div>{loggedIn && <h1>{userInfo.username}'s Profile</h1>}</div>;
 };
 
 export default ProfilePage;
