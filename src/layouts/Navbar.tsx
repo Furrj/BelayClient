@@ -55,9 +55,9 @@ const Navbar: React.FC<IProps> = ({ loggedIn, username, logout }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <div className="nav-link" onClick={logout}>
+                <Link to={"/login"} className="nav-link" onClick={logout}>
                   Logout
-                </div>
+                </Link>
               </li>
             </ul>
           )}

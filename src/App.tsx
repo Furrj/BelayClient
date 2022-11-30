@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //VIEWS
 import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
 import HomePage from "./views/HomePage";
+import ProfilePage from "./views/ProfilePage";
 
 //LAYOUTS
 import Navbar from "./layouts/Navbar";
@@ -65,6 +62,10 @@ const App: React.FC = () => {
                 setUserInfo={setUserInfo}
               />
             }
+          />
+          <Route
+            path="/profile"
+            element={<ProfilePage userInfo={userInfo} loggedIn={loggedIn} />}
           />
         </Routes>
         <Footer />
