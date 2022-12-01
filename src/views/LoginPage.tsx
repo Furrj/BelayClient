@@ -62,13 +62,14 @@ const LoginPage: React.FC<IProps> = ({
   };
 
   return (
-    <div>
+    <div className="card">
       <div>Username: </div>
       <input
         type="text"
         name="username"
         value={userInput.username}
         onChange={inputHandler}
+        className="form-control"
       />
       <br />
       <div>Password:</div>
@@ -77,10 +78,16 @@ const LoginPage: React.FC<IProps> = ({
         name="password"
         value={userInput.password}
         onChange={inputHandler}
+        className="form-control"
       />
       <br />
-      {invalidInfo && <InvalidInfo />}
-      <button className="mt-3" onClick={login}>
+      {invalidInfo && (
+        <div>
+          <InvalidInfo />
+          <br />
+        </div>
+      )}
+      <button className="mt-3 btn btn-primary" onClick={login}>
         Login
       </button>
     </div>

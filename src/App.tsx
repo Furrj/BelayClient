@@ -10,6 +10,7 @@ import ProfilePage from "./views/ProfilePage";
 //LAYOUTS
 import Navbar from "./layouts/Navbar";
 import Footer from "./layouts/Footer";
+import Wrapper from "./layouts/Wrapper";
 
 //STATE
 export type IUser = {
@@ -41,33 +42,35 @@ const App: React.FC = () => {
           username={userInfo.username}
           logout={logout}
         />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/login"
-            element={
-              <LoginPage
-                setLoggedIn={setLoggedIn}
-                userInfo={userInfo}
-                setUserInfo={setUserInfo}
-              />
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <RegisterPage
-                setLoggedIn={setLoggedIn}
-                userInfo={userInfo}
-                setUserInfo={setUserInfo}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={<ProfilePage userInfo={userInfo} loggedIn={loggedIn} />}
-          />
-        </Routes>
+        <Wrapper>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/login"
+              element={
+                <LoginPage
+                  setLoggedIn={setLoggedIn}
+                  userInfo={userInfo}
+                  setUserInfo={setUserInfo}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <RegisterPage
+                  setLoggedIn={setLoggedIn}
+                  userInfo={userInfo}
+                  setUserInfo={setUserInfo}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={<ProfilePage userInfo={userInfo} loggedIn={loggedIn} />}
+            />
+          </Routes>
+        </Wrapper>
         <Footer />
       </div>
     </BrowserRouter>

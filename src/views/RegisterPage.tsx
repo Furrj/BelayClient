@@ -50,7 +50,7 @@ const RegisterPage: React.FC<IProps> = ({
       setTaken(false);
       setLoggedIn(true);
       setUserInfo(data);
-      return navigate("/");
+      return navigate("/profile");
     }
   };
 
@@ -62,13 +62,14 @@ const RegisterPage: React.FC<IProps> = ({
   };
 
   return (
-    <div>
+    <div className="card">
       <div>Username: </div>
       <input
         type="text"
         name="username"
         value={userInput.username}
         onChange={inputHandler}
+        className="form-control"
       />
       <br />
       <div>Password:</div>
@@ -77,11 +78,16 @@ const RegisterPage: React.FC<IProps> = ({
         name="password"
         value={userInput.password}
         onChange={inputHandler}
+        className="form-control"
       />
       <br />
-      {taken && <UsernameTaken />}
-      <br />
-      <button className="mt-3" onClick={register}>
+      {taken && (
+        <div>
+          <UsernameTaken />
+          <br />
+        </div>
+      )}
+      <button className="mt-3 btn btn-primary" onClick={register}>
         Register
       </button>
     </div>
