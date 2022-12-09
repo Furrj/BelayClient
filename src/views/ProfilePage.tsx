@@ -16,7 +16,17 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, loggedIn }) => {
     if (!loggedIn) return navigate("/login");
   }, []);
 
-  return <div>{loggedIn && <h1>{userInfo.username}'s Profile</h1>}</div>;
+  return (
+    <div className="card">
+      <div className="card-title">
+        <h2>{userInfo.username}</h2>
+        <hr />
+      </div>
+      <div className="card-body">
+        Name
+      </div>
+    </div>
+  );
 };
 
 export default ProfilePage;

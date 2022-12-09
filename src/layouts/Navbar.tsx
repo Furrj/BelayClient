@@ -12,7 +12,7 @@ const Navbar: React.FC<IProps> = ({ loggedIn, username, logout }) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-3">
       <div className="container-fluid">
         <div className="navbar-brand" id="nav-title">
-          Beelay
+          Jammer
         </div>
         <button
           className="navbar-toggler"
